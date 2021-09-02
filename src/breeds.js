@@ -3,5 +3,4 @@ const breeds = [
   'affenpinscher',
   'australian',
   'mexicanhairless',
-  'cocker',
 ]

@@ -80,14 +80,16 @@ const getDogs = async (breed, num) => {
   }
 }
 
-// 👉 (OPTIONAL) TASK 7- Put a button in index.html to 'get dogs' and add a click
+// 👉 (OPTIONAL) TASK 7a- Put a button in index.html to 'get dogs' and add a click
 // event listener that executes `getDogs`
 // 👉 (OPTIONAL) TASK 7b- Import the breeds from `breeds.js`
 // or request them from https://lambda-times-api.herokuapp.com/breeds
 // and loop over them, fetching a dog at each iteration
 document.querySelector('#getDogs').addEventListener('click', () => {
   entryPoint.innerHTML = "";
-  getDogs('labrador', 50);
+  breeds.forEach(breed => {
+    getDogs(breed, 2);
+  })
 })
 
 
