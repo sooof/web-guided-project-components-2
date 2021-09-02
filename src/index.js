@@ -1,4 +1,3 @@
-
 // 👉 TASK 1- Test out the following endpoints:
 
 //  https://lambda-times-api.herokuapp.com/friends
@@ -64,7 +63,7 @@ function dogCardMaker({ imageURL, breed }) {
 // that takes a breed and a count (of dogs)
 const getDogs = async (breed, num) => {
   try {
-    const resp = await axios.get(`https://dog.ceo/api/breed/${breed}/images/random/${num}`);
+    const resp = await axios.get(`https://dog.eo/api/breed/${breed}/images/random/${num}`);
 
     for (let i = 0; i < resp.data.message.length; i++) {
       const doggo = { imageURL: resp.data.message[i], breed: breed }
@@ -78,6 +77,24 @@ const getDogs = async (breed, num) => {
   } finally {
     console.log("We're baaaaaaack!");
   }
+  // axios.get(`https://dog.ceo/api/breed/${breed}/images/random/${num}`)
+  // .then(resp => {
+  //   console.log(resp.data);
+
+  //   for (let i = 0; i < resp.data.message.length; i++) {
+  //     const doggo = { imageURL: resp.data.message[i], breed: breed }
+  //     const dogCard = dogCardMaker(doggo);
+  //     entryPoint.appendChild(dogCard);
+  //   }
+  // })
+  // .catch(err => {
+  //   const errorText = document.createElement('p');
+  //   errorText.textContent = "Oh noes! Try again later :(";
+  //   document.body.appendChild(errorText);
+  // })
+  // .finally(() => {
+  //   console.log("We're baaaaaaack!");
+  // })
 }
 
 // 👉 (OPTIONAL) TASK 7a- Put a button in index.html to 'get dogs' and add a click
@@ -94,21 +111,3 @@ document.querySelector('#getDogs').addEventListener('click', () => {
 
 
 
-// axios.get(`https://dog.ceo/api/breed/${breed}/images/random/${num}`)
-//   .then(resp => {
-//     console.log(resp.data);
-
-//     for (let i = 0; i < resp.data.message.length; i++) {
-//       const doggo = { imageURL: resp.data.message[i], breed: breed }
-//       const dogCard = dogCardMaker(doggo);
-//       entryPoint.appendChild(dogCard);
-//     }
-//   })
-//   .catch(err => {
-//     const errorText = document.createElement('p');
-//     errorText.textContent = "Oh noes! Try again later :(";
-//     document.body.appendChild(errorText);
-//   })
-//   .finally(() => {
-//     console.log("We're baaaaaaack!");
-//   })
