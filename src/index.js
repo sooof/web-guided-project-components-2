@@ -55,15 +55,23 @@ function dogCardMaker({ imageURL, breed }) {
 //    * ON SUCCESS: use the data to create dogCards and append them to the entry point
 //    * ON FAILURE: log the error to the console
 //    * IN ANY CASE: log "done" to the console
-axios.get('https://dog.ceo/api/breed/pug/images/random')
+const breed = "weimaraner";
+const num = 5;
+
+axios.get(`https://dog.ceo/api/breed/${breed}/images/random/${num}`)
   .then(resp => {
     console.log(resp.data);
-    const doggo = { imageURL: resp.data.message, breed: 'pug' }
-    const dogCard = dogCardMaker(doggo);
-    entryPoint.appendChild(dogCard);
+
+    for (let i = 0; i < resp.data.message.length; i++) {
+      const doggo = { imageURL: resp.data.message[i], breed: breed }
+      const dogCard = dogCardMaker(doggo);
+      entryPoint.appendChild(dogCard);
+    }
   })
   .catch(err => {
-    console.error(err);
+    const errorText = document.createElement('p');
+    errorText.textContent = "Oh noes! Try again later :(";
+    document.body.appendChild(errorText);
   })
   .finally(() => {
     console.log("We're baaaaaaack!");
