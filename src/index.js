@@ -55,13 +55,13 @@ function dogCardMaker({ imageURL, breed }) {
 //    * ON SUCCESS: use the data to create dogCards and append them to the entry point
 //    * ON FAILURE: log the error to the console
 //    * IN ANY CASE: log "done" to the console
-const breed = "weimaraner";
-const num = 5;
 
 // two ways to write a function...
 // function declaration ::: function getDogs() {}
 // function expression  ::: const getDogs = () => {}
 
+// 👉 (OPTIONAL) TASK 6- Wrap the fetching operation inside a function `getDogs`
+// that takes a breed and a count (of dogs)
 const getDogs = async (breed, num) => {
   try {
     const resp = await axios.get(`https://dog.ceo/api/breed/${breed}/images/random/${num}`);
@@ -79,6 +79,17 @@ const getDogs = async (breed, num) => {
     console.log("We're baaaaaaack!");
   }
 }
+
+// 👉 (OPTIONAL) TASK 7- Put a button in index.html to 'get dogs' and add a click
+// event listener that executes `getDogs`
+// 👉 (OPTIONAL) TASK 7b- Import the breeds from `breeds.js`
+// or request them from https://lambda-times-api.herokuapp.com/breeds
+// and loop over them, fetching a dog at each iteration
+document.querySelector('#getDogs').addEventListener('click', () => {
+  entryPoint.innerHTML = "";
+  getDogs('labrador', 50);
+})
+
 
 
 // axios.get(`https://dog.ceo/api/breed/${breed}/images/random/${num}`)
@@ -99,19 +110,3 @@ const getDogs = async (breed, num) => {
 //   .finally(() => {
 //     console.log("We're baaaaaaack!");
 //   })
-
-
-// function getRandomDogPic(breed) {
-//   get from database this breed and return it!
-// }
-// 👉 (OPTIONAL) TASK 6- Wrap the fetching operation inside a function `getDogs`
-// that takes a breed and a count (of dogs)
-
-
-// 👉 (OPTIONAL) TASK 7- Put a button in index.html to 'get dogs' and add a click
-// event listener that executes `getDogs`
-
-
-// 👉 (OPTIONAL) TASK 8- Import the breeds from `breeds.js`
-// or request them from https://lambda-times-api.herokuapp.com/breeds
-// and loop over them, fetching a dog at each iteration
