@@ -13,16 +13,22 @@
 
 // 👉 TASK 2- Select the "entry point", the element
 // inside of which we'll inject our dog cards 
-const entryPoint = null
-
+const entryPoint = document.querySelector('.entry');
 
 // 👉 TASK 3- `dogCardMaker` takes an object and returns a Dog Card.
 // Use this function to build a Card, and append it to the entry point.
+//                  { imageURL: 'value', breed: 'something' }
 function dogCardMaker({ imageURL, breed }) {
   // instantiating the elements
   const dogCard = document.createElement('div')
   const image = document.createElement('img')
   const heading = document.createElement('h3')
+  /*
+    <div>
+      <img />
+      <h3>
+    </div>
+  */
   // setting class names, attributes and text
   heading.textContent = `Breed: ${breed}`
   image.src = imageURL
@@ -49,8 +55,24 @@ function dogCardMaker({ imageURL, breed }) {
 //    * ON SUCCESS: use the data to create dogCards and append them to the entry point
 //    * ON FAILURE: log the error to the console
 //    * IN ANY CASE: log "done" to the console
+axios.get('https://dog.ceo/api/breed/pug/images/random')
+  .then(resp => {
+    console.log(resp.data);
+    const doggo = { imageURL: resp.data.message, breed: 'pug' }
+    const dogCard = dogCardMaker(doggo);
+    entryPoint.appendChild(dogCard);
+  })
+  .catch(err => {
+    console.error(err);
+  })
+  .finally(() => {
+    console.log("We're baaaaaaack!");
+  })
 
 
+// function getRandomDogPic(breed) {
+//   get from database this breed and return it!
+// }
 // 👉 (OPTIONAL) TASK 6- Wrap the fetching operation inside a function `getDogs`
 // that takes a breed and a count (of dogs)
 
